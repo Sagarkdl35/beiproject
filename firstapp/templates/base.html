@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS DATA</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+</head>
+<body>
+
+<table  class="table-primary">
+   {% if st %}
+    <th scope="column">Latitude</th>
+    <th scope="column">Longitude</th>
+   
+    
+    <tr scope="row"> 
+    {% for stu in st reversed %}
+        <td>{{stu.latitude}}</td>
+        <td>{{stu.longitude}}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    {% endif %}
+<script src ="{% static 'bootstrap.js' %}"></script>
+<script>
+      {% comment %} function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 1000); {% endcomment %}
+    location.reload();
+</script>
+</body>
+</html>

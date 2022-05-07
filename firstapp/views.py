@@ -10,6 +10,10 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
+import json
+from django.views.decorators.csrf import csrf_exempt
+from .models import data_model
+#import time
 # Create your views here
 def  home(request):
     book=Booking.objects.all()
@@ -157,3 +161,52 @@ def book(request,vehicle_no):
 
 def contact(request):
     return render(request,'contact.html')
+
+
+context={'A':0,'B':0,'C':0}
+      
+@csrf_exempt
+def send_data(request):
+      
+     
+    
+      if request.method=='POST':
+        first=request.body
+        print(first)
+        var= json.loads(first)
+        var1= (var[0]['latitude'])
+        var2= (var[0]['longitude'])
+        var3= (var[0]['count'])
+        latitude = var1
+        longitude = var2
+        count=var3
+        #print(var1)
+        #print(var2)
+        context["A"] = var1
+        context["B"] = var2
+        context["C"] =var3
+        reg= data_model(latitude=var1, longitude=var2,count=var3)
+        reg.save()
+        print(var1, var2, var3)
+        return HttpResponse(var)
+       
+        
+        #context = {"A":var1,"B":var2}
+        #print(context)
+       #return render(request,'ky024/home.html',context)
+       # return render(request,'<html><body>Hello</body></html>',context)
+
+      
+        # return render(request, 'second/base.html',{'var1':var1, 'var2':var2})
+
+      else:
+    
+          #st= data_model.objects.all
+          #return render(request, 'ky024/base.html',{'st':st} )
+          print("it is get request by browser")
+          #context={'A':latitude,'B':longitude}
+          return render(request,'home1.html',context)
+        
+      #if request.method=='GET':
+        #context={'A':reg.latitude,'B':reg.longitude}
+        

@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data send </title>
+
+</head>
+<body>
+    {% block content %}
+    <div style="background-color:#e21335;border-radius:20px;width:950px">
+        <h1>data : A: {{ A }}  B: {{ B }}</h1>
+        <button type="button" onclick="showMap()"   value="find location">Find Location</button>
+    </div>
+    
+</body>
+<script>
+    console.log("load")
+    function showMap(){
+        //console.log("control here.....","A:{{A}}","B:{{B}}")
+      
+        window.location = "http://maps.google.com/maps?&z=15&mrt=yp&t=k&q={{A}}+{{B}}"
+        
+    }
+</script>
+{% endblock %}
+</html>

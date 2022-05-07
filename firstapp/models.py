@@ -3,6 +3,9 @@ from django.db import models
 from django.core.validators import *
 from django.contrib.auth.models import User
 from .models import *
+from pickle import TRUE
+from tkinter import Widget
+from datetime import datetime, time
 # Create your models here.
 #class Photo:
  #   id:int
@@ -44,3 +47,8 @@ class Booking(models.Model):
     customer=models.OneToOneField(User,on_delete=models.CASCADE)
     vehicle=models.ForeignKey(Vehicle,default=None,on_delete=models.CASCADE)
     is_booked=models.BooleanField(default=False)
+
+class data_model(models.Model):
+    latitude = models.CharField(max_length=50, null=True)
+    longitude = models.CharField(max_length=50, null=True)
+    count = models.CharField(max_length=50, null=True)
