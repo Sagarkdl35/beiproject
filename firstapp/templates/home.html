@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent your favourite Vehicle</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <style>
+       body
+       {
+         background-image: url('{% static "julian-hochgesang-qNKfj9mgraI-unsplash.jpg" %}');
+         background-color: aquamarine;
+          background-repeat:space;
+          background-position: center;
+          background-size:150%;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+       }
+       button {
+         background-color: #e21335;
+         border-radius: 10px;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 1px;
+         cursor: pointer;
+       }
+       .logo{
+          border-radius: 50%;
+       }
+    </style>
+</head>
+<body>
+  
+    <!--
+         
+       -->
+    <button class="logo" onclick="location.href='{% url 'home' %}';">
+       <img src="{% static 'rent.png' %}" height="50px">
+    </button>
+    <button value="about" onclick="location.href='{% url 'about' %}';">
+       About This Website
+    </button>
+      <!--
+ <h2>
+         <a href="{% url 'about' %}">About</a>
+        </h2>
+    -->
+       
+     <button onclick="location.href='{% url 'vehicles' %}';">Available vehicles
+     </button>
+     {% if vendor %}
+     
+     <button onclick="location.href='{% url 'add_vehicle' %}';">
+     Add Vehicles
+   </button>
+   {% endif %}
+     <button onclick="location.href='{% url 'contact' %}';">Contact Us
+     </button><button onclick="location.href='{% url 'about' %}';">Terms And Conditions
+     </button>
+{% if not user.is_authenticated %}
+     <button onclick="location.href='{% url 'register' %}';">
+      Register Or SignUp
+   </button>
+
+   {% endif %}
+     
+     {% if user.is_authenticated %}
+     <button onclick="location.href='{% url 'logout' %}';">
+     Logout,  {{user.username.upper}}
+   </button>
+     
+
+{% else %}
+     <button onclick="location.href='{% url 'login' %}';">Login
+   </button>
+   
+   {% endif %}
+   <!--
+<h2>
+        hello world this is base.html and i am extending this line of code inside the home.html
+    </h2>
+   -->
+   <center>
+      {% block content %}
+      {% endblock %}
+   </center>
+   
+<center>
+   {% if user.is_authenticated %}
+<div>
+</div>
+   {% endif %}
+</center>
+<!--
+<h1>the user id number is {{userselected}} and the role associated with you is {{role.upper}}</h1>
+-->
+
+
+</body>
+</html>

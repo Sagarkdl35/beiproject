@@ -1,0 +1,105 @@
+
+{% extends 'home.html' %}
+{% block content %}
+<div style="border-radius: 15px;background-color:azure">
+    <h1 style="color: rgb(255, 0, 0);">Available vehicles list</h1>
+    <div style='background-color:crimson'>
+    
+        <table border="4px"  style="width: 800px;border-radius:15px"><tr>
+            <th>
+                Vehicle Name
+            </th>
+            <th>
+                Vehicle Number
+            </th>
+            <th>
+                Owner Name
+                </th>
+                <th>
+                    Vehicle Image
+                </th>
+                <th>
+Action
+                </th>
+            
+            </tr>
+                        {% for vehicle in vehicle_list %}
+                   
+
+            
+            <tr>
+            <td>
+                <h2>
+                    {{vehicle.vehicle_name}}
+                </h2>
+                
+            </td>
+            <td><h2>
+                {{vehicle.vehicle_no}}
+
+            </h2>
+            </td>
+            <td><h2>
+                {{vehicle.owner.dealer}}
+
+            </h2>
+            </td>
+            <td>
+                <img src="{{vehicle.vehicle_photo.url}}" alt='vehicle image' height="150px">
+            </td>
+            <td>
+                {% if vehicle.is_booked is True %}
+                <button type="disabled"
+                {% else %}
+                <button type="submit"
+                
+                {% if user.is_authenticated %}
+
+                onclick="location.href='{% url 'book' vehicle_no=vehicle.vehicle_no %}';"
+                {% else %}
+                onclick="location.href='{%url 'login' %}';"
+                {% endif %}
+                {% endif %}
+                {% if vehicle.is_booked is True %}
+                style="color:rgb(255, 255, 255);background-color:rgb(197, 34, 34)">
+                {% else %}
+                style="color:rgb(255, 255, 255);background-color:green">
+                {% endif %}
+                
+{% if vehicle.is_booked is True %}
+
+Already Booked 
+{% else %}
+                Book This      
+            {% endif %}</button>
+        </td>
+        <td>
+            <button type="submit" style="color:rgb(255, 255, 255) ;background-color:rgb(62, 172, 72)">Find Location</button>
+
+        </td>
+
+            
+            
+            
+        </tr>
+        <tr>
+            
+                
+            
+        </tr>
+      
+
+    
+     
+    
+
+    
+    {% endfor %}
+</table>
+
+    </div>
+    <h2></h2>
+</div>
+
+
+{% endblock %}

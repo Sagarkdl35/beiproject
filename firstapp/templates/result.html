@@ -1,0 +1,19 @@
+
+{% extends 'home.html' %}
+{% load static %}
+result of the addition operation is given below :
+{% block content %}
+<center>
+    {{ result }}
+    {% for photo in photos %}
+    <h1>{{photo}}</h1>
+    <li>
+        <img src="{% static 'coronavirus-banner.jpg' %}" alt="" height="300px">
+    
+    </li>
+    
+    {% endfor %}
+    
+    {% endblock %}
+    
+</center>

@@ -1,0 +1,73 @@
+{% extends 'home.html' %}
+{% block content %}
+    <title>Register Here</title>
+    <style>
+        input
+        {
+            color: teal;
+            margin: 4px;
+            width: 500px;
+            height: 30px;
+            border: slateblue;
+            border-radius: 5px;
+        }
+       select{
+            color: teal;
+            margin: 4px;
+            width: 300px;
+            height: 30px;
+            border: slateblue;
+            border-radius: 5px;
+        }
+        label
+        {
+            height: auto;
+        }
+        div
+        {
+            border: 5px;
+            /*background-color: skyblue; */
+        }
+    </style>
+</head>
+<body style="background-color:cornflowerblue">
+    <center>
+        <div style="'background-color:">
+            <u>
+                <h2 style="color: rgb(0, 255, 76);">Register Now</h2>
+            </u>
+            <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="first_name">first_name</label>
+            <input type="text" name="first_name" id="" placeholder="name"><br>
+            <label for="last_name">last_name</label>
+            <input type="text" name="last_name" id="" placeholder="last_name" required><br><label for="username">username</label>
+            <input type="text" name="username" id="" placeholder="username" required><br><label for="email">email</label>
+            <input type="email" name="email" id="" placeholder="email" required><br>
+            <label for="mobile">Mobile</label>
+            <input type="number" name="mobile" id="mobile" required><br>
+            
+                    <label for="role">Role:</label><br>
+        
+        <select name="role" required>
+                <option value="Administrator">Administrator</option>
+                <option value="Vendor">Vendor</option>
+                <option value="Customer">Customer</option>
+              </select><br>
+            <label for="password1">password</label>
+            <input type="password" name="password1" id="" placeholder="password" required><br>
+            <label for="password2">confirm password</label>
+            <input type="password" name="password2" id="name" placeholder="confirm password" required><br>
+            <button type="submit" value="submit" id="submit">Submit</button>
+            </form>
+            <h1 style="color: red;">{{message}}</h1>
+            <button onclick="location.href='{% url 'login' %}'">Already a Member? Login Now!</button>
+        
+        </div>
+        <button disabled="disabled" style="background-color:unset;" onclick="location.href='{% url 'login' %}'">hello</button>
+        
+    </center>
+    
+     
+{% endblock %}
+ 

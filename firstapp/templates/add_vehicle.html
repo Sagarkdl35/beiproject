@@ -1,0 +1,73 @@
+{% extends 'home.html' %}
+{% block content %}
+<center>
+    <div style="border-radius:15px; background-color:rgba(221, 211, 216, 0.473)">
+        <h1>This is the vehicle add option</h1>
+        <h3>Please fill up the given form so that We can validate your details</h3>
+    </div>
+    
+    <div style="border-radius: 15px; background-color:rgba(221, 211, 216, 0.473);">
+        <form action="{% url 'add_vehicle' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!--
+                <h3 style="color: rgb(201, 19, 89); background-color:coral">
+                Owner Name : 
+            </h3> 
+            <input type="text" name="owner" id="owner" required>
+
+
+<select name="owner" required>
+                <option value="{{user.username}}">{{user.username}}</option>
+              </select>
+            -->
+            <h3 style="color: rgb(201, 19, 89);background-color:coral">
+                Username :
+            </h3>
+         <input type="text" name="username" id="username" required>
+         <h3 style="color: rgb(201, 19, 89);background-color:coral">
+            Password :
+        </h3>
+     <input type="password" name="password" id="password" required>
+              <h3 style="color: rgb(201, 19, 89);background-color:coral">
+                vehicle_no :
+            </h3>
+         <input type="text" name="vehicle_no" id="vehicle_no" required>
+         <h3 style="color: rgb(201, 19, 89);background-color:coral">
+            vehicle_name :
+        </h3> <input type="text" name="vehicle_name" id="vehicle_name" required><br>
+        <h3 style="color: rgb(201, 19, 89);background-color:coral">
+            Color :
+        </h3><input type="text" name="color" id="color" required><br>
+        <h3 style="color: rgb(201, 19, 89);background-color:coral">
+            vehicle_Photo:
+        </h3><input type="file" name="vehicle_photo" id="vehicle_photo" required><br>
+        <h3 style="color: rgb(201, 19, 89);background-color:coral">
+            owner_Photo :
+        </h3><input type="file" name="owner_photo" id="owner_photo" required><br>
+
+<h3 style="color: rgb(201, 19, 89);background-color:coral">
+            driving_license :
+        </h3><input type="file" name="driving_license" id="driving_license" required><br>
+        <h3 style="color: rgb(201, 19, 89);background-color:coral">
+            Citizenship Front :
+        </h3><input type="file" name="citizenship_front" id="citizenship_front" required><br>
+        <h3 style="color: rgb(201, 19, 89);background-color:coral">
+            citizenship Back:
+        </h3><input type="file" name="citizenship_back" id="citizenship_back" required><br>
+        
+            <button type="submit">Submit To Add</button>
+        
+        </form>
+        
+    </div>
+    <div>
+
+    </div><h3 style="color: rgb(19, 248, 19);background-color:coral">{{message}}</h3>
+    <h3 style="color: rgb(201, 19, 89);background-color:coral">The details of your vehicle are listed below</h3>
+   {% for vehicle in vehicle_details %}
+    {{vehicle.vehicle_name}}
+{% endfor %}
+</center>
+
+{% endblock %}

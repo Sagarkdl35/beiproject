@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+{% block content %}
+<div style="width:600px;border-radius:3px">
+    <h2 style="background-color:#e21335">Book This Vehicle</h2>
+
+</div>
+
+
+<h1>{{today}}</h1>
+<div style="background-color:#e21335;width: 600px;border-radius:15px">
+    <ul>
+        <li>
+            <h3 style="color: rgb(4, 230, 53);">You can book this vehicle now or anytime before 30 days</h2>
+        </li>
+        <li>
+            <h3 style="color: rgb(4, 230, 53);">And the maximum days you can Take it is 1 week </h2>
+        </li>
+        </ul>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h2>
+            <label for="starttime">Input the Starting  time :</label> <input type="date" name="starttime" id="starttime" min="{{startmindate}}"  max="{{startmaxdate}}" style="width: 250px;height:30px;border-radius:6px" required>
+        </h2>
+        <!--
+        {% if not user.is_authenticated %}
+
+        -->
+        <!--
+<h2>
+            <label for="username">enter the username:</label> <input type="text" name="username" id="username" required>
+        </h2>
+        <h2>
+            <label for="password">Enter the password :</label> <input type="password" name="password" id="password" required>
+        </h2>
+        -->
+
+        
+       <!--
+{% endif %}
+       --> 
+        <h2>
+            <label for="endtime">Input the End time  :</label> <input type="date" name="endtime" id="endtime" min="{{endmindate}}"   max="{{endmaxdate}}" style="width: 250px;height:30px;border-radius:6px"  required>
+        </h2>
+        <button type="submit">Book</button>
+     </form>
+</div>
+
+{% endblock %}
